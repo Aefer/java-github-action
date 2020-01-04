@@ -1,13 +1,5 @@
 #!/bin/sh
 export LANG=C
-# Mac平台，C编译器不再是GCC，是clang
-export CC=clang
-# 跳过clang的一些严格的语法检查，不然会将N多的警告作为Error
-export COMPILER_WARNINGS_FATAL=false
-# 链接时使用的参数
-export LFLAGS='-Xlinker -lstdc++'
-# 是否使用clang
-export USE_CLANG=true
 # 使用64位数据模型
 export LP64=1
 # 告诉编译平台是64位，不然会按32位来编译
