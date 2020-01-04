@@ -17,9 +17,9 @@ jobs:
         java-version: 1.7
     - name: Java compile
       run: |
-        sudo apt-get update && sudo apt install clang mercurial build-essential libx11-dev libxext-dev libxrender-dev libxtst-dev libxt-dev libcups2-dev libfreetype6-dev libasound2-dev ccache gawk m4 libasound2-dev  libxrender-dev xorg-dev xutils-dev binutils libmotif-dev ant
-        sudo update-alternatives --set cc /usr/bin/clang
-        sudo update-alternatives --set c++ /usr/bin/clang++
+        sudo apt-get update && sudo apt autoremove -y && sudo apt install mercurial build-essential libx11-dev libxext-dev libxrender-dev libxtst-dev libxt-dev libcups2-dev libfreetype6-dev libasound2-dev ccache gawk m4 libasound2-dev  libxrender-dev xorg-dev xutils-dev binutils libmotif-dev ant
+        #sudo update-alternatives --set cc /usr/bin/clang
+        #sudo update-alternatives --set c++ /usr/bin/clang++
         source ~/work/java-github-action/java-github-action/jvm.sh
         mkdir /opt/jdk8
         hg clone http://hg.openjdk.java.net/jdk8u/jdk8u /opt/jdk8
