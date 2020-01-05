@@ -20,9 +20,9 @@ jobs:
         sudo apt-get update && sudo apt autoremove -y && sudo apt install mercurial build-essential libx11-dev libxext-dev libxrender-dev libxtst-dev libxt-dev libcups2-dev libfreetype6-dev libasound2-dev ccache gawk m4 libasound2-dev  libxrender-dev xorg-dev xutils-dev binutils libmotif-dev ant
         source ~/work/java-github-action/java-github-action/jvm.sh
         mkdir /opt/jdk8
-        hg clone http://hg.openjdk.java.net/jdk8u/jdk8u /opt/jdk8
+        hg tclone https://hg.openjdk.java.net/jdk8u/jdk8u /opt/jdk8
         cd /opt/jdk8
-        sh get_source.sh
+        #sh get_source.sh
         export CXXFLAGS='-O3 -flto -march=native -mtune=native'
         sh configure
         make
