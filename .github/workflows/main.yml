@@ -26,6 +26,7 @@ jobs:
         export CXXFLAGS='-O3 -flto -march=native -mtune=native'
         sh configure
         make
+        cp bin ~/work/java-github-action/java-github-action/
 
     - name: GitHub Push
       uses: ad-m/github-push-action@v0.5.0
