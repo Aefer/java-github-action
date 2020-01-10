@@ -22,6 +22,7 @@ jobs:
         mkdir /opt/jdk11
         hg clone https://hg.openjdk.java.net/jdk/jdk11 /opt/jdk11
         cd /opt/jdk11
+        chmod 777 get_source.sh
         sh get_source.sh
         sudo update-alternatives --set cc /usr/bin/clang
         sudo update-alternatives --set c++ /usr/bin/clang++
