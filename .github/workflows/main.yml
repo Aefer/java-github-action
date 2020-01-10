@@ -14,20 +14,23 @@ jobs:
     - uses: actions/checkout@v2
     - uses: actions/setup-java@v1.3.0
       with:
-        java-version: 1.7
+        java-version: 1.10
     - name: Java compile
       run: |
         sudo apt-get update && sudo apt autoremove -y && sudo apt install mercurial build-essential libx11-dev libxext-dev libxrender-dev libxtst-dev libxt-dev libcups2-dev libfreetype6-dev libasound2-dev ccache gawk m4 libasound2-dev  libxrender-dev xorg-dev xutils-dev binutils libmotif-dev ant
         source ~/work/java-github-action/java-github-action/jvm.sh
-        mkdir /opt/jdk8
-        hg clone https://hg.openjdk.java.net/jdk8u/jdk8u /opt/jdk8
-        cd /opt/jdk8
+        mkdir /opt/jdk11
+        hg clone https://hg.openjdk.java.net/jdk/jdk11 /opt/jdk11
+        cd /opt/jdk11
         sh get_source.sh
-        export CXXFLAGS='-O3 -flto -march=native -mtune=native'
+        sudo update-alternatives --set cc /usr/bin/clang
+        sudo update-alternatives --set c++ /usr/bin/clang++
+        export CFLAGS='-march=native -O3 -pipe -flto -fstack-protector-strong -fno-plt -mllvm -polly -mllvm -polly-parallel -lgomp -polly-vectorizer=stripmine'
+        export CXXFLAGS="${CFLAGS}"
         sh configure
         make
-        ls -al build/linux-x86_64-normal-server-release/jdk
-        cp build/linux-x86_64-normal-server-release/bin ~/work/java-github-action/java-github-action/
+        #ls -al build/linux-x86_64-normal-server-release/jdk/bin
+        cp build/linux-x86_64-normal-server-release/jdk/bin ~/work/java-github-action/java-github-action/
 
     - name: GitHub Push
       uses: ad-m/github-push-action@v0.5.0
