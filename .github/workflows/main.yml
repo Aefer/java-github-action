@@ -17,7 +17,7 @@ jobs:
         java-version: 10
     - name: Java compile
       run: |
-        sudo apt-get update && sudo apt autoremove -y && sudo apt install mercurial build-essential libx11-dev libxext-dev libxrender-dev libxtst-dev libxt-dev libcups2-dev libfreetype6-dev libasound2-dev ccache gawk m4 libasound2-dev  libxrender-dev xorg-dev xutils-dev binutils libmotif-dev ant
+        sudo apt-get update && sudo apt autoremove -y && sudo apt install mercurial clang llvm build-essential libx11-dev libxext-dev libxrender-dev libxtst-dev libxt-dev libcups2-dev libfreetype6-dev libasound2-dev ccache gawk m4 libasound2-dev  libxrender-dev xorg-dev xutils-dev binutils libmotif-dev ant
         source ~/work/java-github-action/java-github-action/jvm.sh
         mkdir /opt/jdk11
         hg clone https://hg.openjdk.java.net/jdk/jdk11 /opt/jdk11
