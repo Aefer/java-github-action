@@ -18,8 +18,7 @@ jobs:
     - name: Java compile
       run: |
         sudo apt-get update && sudo apt autoremove -y && sudo apt install mercurial clang llvm build-essential libx11-dev libxext-dev libxrender-dev libxtst-dev libxt-dev libcups2-dev libfreetype6-dev libasound2-dev ccache gawk m4 libasound2-dev  libxrender-dev xorg-dev xutils-dev binutils libmotif-dev ant
-        sudo apt purge -y ghc-* hhvm  firefox google-chrome-stable google-cloud-sdk dotnet-* powershell mysql-* mono-* moby-*
-        df -h
+        sudo apt purge -y ghc-* hhvm  firefox google-chrome-stable google-cloud-sdk dotnet-* powershell mysql-* mono-* moby-* > apt.log
         source ~/work/java-github-action/java-github-action/jvm.sh
         mkdir /opt/jdk11
         hg clone https://hg.openjdk.java.net/jdk/jdk11 /opt/jdk11
@@ -32,6 +31,8 @@ jobs:
         make
         #ls -al build/linux-x86_64-normal-server-release/jdk/bin
         cp build/linux-x86_64-normal-server-release/jdk/bin ~/work/java-github-action/java-github-action/
+        cat ~/apt.log
+        df -h
 
     - name: GitHub Push
       uses: ad-m/github-push-action@v0.5.0
